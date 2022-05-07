@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using static R2API.SoundAPI;
 
-namespace ExamplePlugin
+namespace TitanFall2Emotes
 {
     public static class Assets
     {

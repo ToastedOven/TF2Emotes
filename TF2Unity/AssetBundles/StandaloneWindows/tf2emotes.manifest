@@ -1,0 +1,37 @@
+ManifestFileVersion: 0
+CRC: 2320586895
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 047c6a78166a2c044cdd9c7bc4840a96
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: bcbffb3bd7ee5665aa80530d069d9ab5
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Engi/Rancho/RanchoRelaxo.anim
+- Assets/Engi/Rancho/RanchoLoop.anim
+- Assets/Engi/Rancho/RanchoRelaxo.prefab
+Dependencies: []
