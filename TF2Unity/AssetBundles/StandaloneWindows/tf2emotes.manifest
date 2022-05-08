@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2320586895
+CRC: 3726011275
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 047c6a78166a2c044cdd9c7bc4840a96
+    Hash: a86c05f487686936a222ea0c106c076d
   TypeTreeHash:
     serializedVersion: 2
     Hash: bcbffb3bd7ee5665aa80530d069d9ab5
@@ -31,7 +31,15 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
+- Assets/Engi/RPS/EngiRPSStart.anim
 - Assets/Engi/Rancho/RanchoRelaxo.anim
 - Assets/Engi/Rancho/RanchoLoop.anim
 - Assets/Engi/Rancho/RanchoRelaxo.prefab
+- Assets/Engi/RPS/EngiRPS_PLose.anim
+- Assets/Engi/RPS/EngiRPS_PWin.anim
+- Assets/Engi/RPS/EngiRPS_SLose.anim
+- Assets/Engi/RPS/EngiRPSLoop.anim
+- Assets/Engi/RPS/EngiRPS_RLose.anim
+- Assets/Engi/RPS/EngiRPS_RWin.anim
+- Assets/Engi/RPS/EngiRPS_SWin.anim
 Dependencies: []
