@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2534025530
+CRC: 2907917000
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a1edb5602f5e5343870298cbb64d1f7d
+    Hash: 065027b0b0fce0210cfbe785ddf9990e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: bcbffb3bd7ee5665aa80530d069d9ab5
+    Hash: 722e1b8ffc06d361e5d9604380a2bd05
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,6 +29,12 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 137
   Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Pyro/RPS/PyroRPS_PWin.anim
@@ -37,11 +43,14 @@ Assets:
 - Assets/Heavy/RPS/HeavyRPS_PLose.anim
 - Assets/Sniper/RPS/SniperRPS_PWin.anim
 - Assets/Scout/RPS/ScoutRPS_PLose.anim
+- Assets/RPS/Rock_Blu.prefab
 - Assets/Soldier/RPS/SoldierRPS_SLose.anim
 - Assets/Engi/Rancho/engiRanchoBurp.anim
 - Assets/Spy/RPS/SpyRPS_Loop.anim
+- Assets/RPS/Scissors_Blu.prefab
 - Assets/Medic/RPS/MedicRPS_PWin.anim
 - Assets/Soldier/RPS/SoldierRPS_PWin.anim
+- Assets/RPS/Paper_Red.prefab
 - Assets/Sniper/RPS/SniperRPS_Start.anim
 - Assets/Soldier/RPS/SoldierRPS_RWin.anim
 - Assets/Spy/RPS/SpyRPS_RLose.anim
@@ -70,6 +79,7 @@ Assets:
 - Assets/Heavy/RPS/HeavyRPS_SLose.anim
 - Assets/Heavy/RPS/HeavyRPS_RLose.anim
 - Assets/Spy/RPS/SpyRPS_PWin.anim
+- Assets/RPS/Scissors_Red.prefab
 - Assets/Heavy/RPS/HeavyRPS_PWin.anim
 - Assets/Scout/RPS/ScoutRPS_RWin.anim
 - Assets/Engi/RPS/EngiRPSLoop.anim
@@ -95,6 +105,7 @@ Assets:
 - Assets/Sniper/RPS/SniperRPS_SLose.anim
 - Assets/Pyro/RPS/PyroRPS_RWin.anim
 - Assets/Soldier/RPS/SoldierRPS_PLose.anim
+- Assets/RPS/Rock_Red.prefab
 - Assets/Soldier/RPS/SoldierRPS_SWin.anim
 - Assets/Demo/RPS/DemoRPS_SLose.anim
 - Assets/Heavy/RPS/HeavyRPS_SWin.anim
@@ -109,4 +120,5 @@ Assets:
 - Assets/Medic/RPS/MedicRPS_SWin.anim
 - Assets/Soldier/RPS/SoldierRPS_Loop.anim
 - Assets/Pyro/RPS/PyroRPS_Loop.anim
+- Assets/RPS/Paper_Blu.prefab
 Dependencies: []
