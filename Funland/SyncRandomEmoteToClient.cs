@@ -42,6 +42,9 @@ namespace TitanFall2Emotes
             GameObject hostBodyObject = Util.FindNetworkObject(secondaryNetId);
             BoneMapper hostJoinerMapper = hostBodyObject.GetComponent<ModelLocator>().modelTransform.GetComponentInChildren<BoneMapper>();
             GameObject g;
+            int prop1;
+            TeamIndex joinerIndex = bodyObject.GetComponent<TeamComponent>().teamIndex;
+            TeamIndex hostIndex = hostBodyObject.GetComponent<TeamComponent>().teamIndex;
             switch (name)
             {
                 case "RPS_Start":
@@ -55,7 +58,7 @@ namespace TitanFall2Emotes
                     g.transform.localPosition = joinerMapper.transform.position;
                     g.transform.localEulerAngles = joinerMapper.transform.eulerAngles;
                     g.transform.localScale = Vector3.one;
-                    joinerMapper.AssignParentGameObject(g, true, true, true, false, false);
+                    joinerMapper.AssignParentGameObject(g, true, true, false, false, false);
                     break;
                 case "RPS_Win":
                     joinerMapper.PlayAnim(TF2Plugin.RPS_Win_Emotes[spot], 0);
@@ -69,15 +72,43 @@ namespace TitanFall2Emotes
                         g.transform.localPosition = new Vector3(0, 0, 2.1f);
                         g.transform.localEulerAngles = new Vector3(0, 180, 0);
                         g.transform.localScale = Vector3.one;
-                        joinerMapper.AssignParentGameObject(g, true, true, true, false, true);
+                        joinerMapper.AssignParentGameObject(g, true, true, false, false, true);
                     }
                     else
                     {
                         g.transform.localPosition = joinerMapper.transform.position;
                         g.transform.localEulerAngles = joinerMapper.transform.eulerAngles;
                         g.transform.localScale = Vector3.one;
-                        joinerMapper.AssignParentGameObject(g, true, true, true, false, false);
+                        joinerMapper.AssignParentGameObject(g, true, true, false, false, false);
                     }
+
+                    string Team = "Red";
+                    if (joinerIndex != hostIndex)
+                    {
+                        Team = "Blu";
+                    }
+                    //0 rock
+                    //1 paper
+                    //2 scissors
+                    prop1 = joinerMapper.props.Count;
+                    switch (spot % 3)
+                    {
+                        case 0:
+                            joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/Rock_{Team}.prefab")));
+                            break;
+                        case 1:
+                            joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/Paper_{Team}.prefab")));
+                            break;
+                        case 2:
+                            joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/Scissors_{Team}.prefab")));
+                            break;
+                        default:
+                            break;
+                    }
+                    joinerMapper.props[prop1].transform.SetParent(joinerMapper.gameObject.GetComponent<Animator>().GetBoneTransform(HumanBodyBones.Head));
+                    joinerMapper.props[prop1].transform.localEulerAngles = Vector3.zero;
+                    joinerMapper.props[prop1].transform.localPosition = new Vector3(0, 1f, 0);
+                    joinerMapper.ScaleProps();
                     break;
                 case "RPS_Loss":
                     joinerMapper.PlayAnim(TF2Plugin.RPS_Loss_Emotes[spot], 0);
@@ -91,15 +122,43 @@ namespace TitanFall2Emotes
                         g.transform.localPosition = new Vector3(0, 0, 2.1f);
                         g.transform.localEulerAngles = new Vector3(0, 180, 0);
                         g.transform.localScale = Vector3.one;
-                        joinerMapper.AssignParentGameObject(g, true, true, true, false, true);
+                        joinerMapper.AssignParentGameObject(g, true, true, false, false, true);
                     }
                     else
                     {
                         g.transform.localPosition = joinerMapper.transform.position;
                         g.transform.localEulerAngles = joinerMapper.transform.eulerAngles;
                         g.transform.localScale = Vector3.one;
-                        joinerMapper.AssignParentGameObject(g, true, true, true, false, false);
+                        joinerMapper.AssignParentGameObject(g, true, true, false, false, false);
                     }
+
+                    string Team2 = "Red";
+                    if (joinerIndex != hostIndex)
+                    {
+                        Team2 = "Blu";
+                    }
+                    //0 rock
+                    //1 paper
+                    //2 scissors
+                    prop1 = joinerMapper.props.Count;
+                    switch (spot % 3)
+                    {
+                        case 0:
+                            joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/Rock_{Team2}.prefab")));
+                            break;
+                        case 1:
+                            joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/Paper_{Team2}.prefab")));
+                            break;
+                        case 2:
+                            joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/Scissors_{Team2}.prefab")));
+                            break;
+                        default:
+                            break;
+                    }
+                    joinerMapper.props[prop1].transform.SetParent(joinerMapper.gameObject.GetComponent<Animator>().GetBoneTransform(HumanBodyBones.Head));
+                    joinerMapper.props[prop1].transform.localEulerAngles = Vector3.zero;
+                    joinerMapper.props[prop1].transform.localPosition = new Vector3(0, 1f, 0);
+                    joinerMapper.ScaleProps();
                     break;
                 default:
                     break;

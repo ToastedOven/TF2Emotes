@@ -8,6 +8,7 @@ using R2API.Utils;
 using RiskOfOptions;
 using RiskOfOptions.Options;
 using RoR2;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -37,6 +38,7 @@ namespace TitanFall2Emotes
             Rancho();
             RPS();
             Register();
+            DEBUG();
             CustomEmotesAPI.animChanged += CustomEmotesAPI_animChanged;
             CustomEmotesAPI.emoteSpotJoined_Body += CustomEmotesAPI_emoteSpotJoined_Body;
         }
@@ -58,174 +60,174 @@ namespace TitanFall2Emotes
             CustomEmotesAPI.AddNonAnimatingEmote("Rock", false);
             CustomEmotesAPI.AddNonAnimatingEmote("Paper", false);
             CustomEmotesAPI.AddNonAnimatingEmote("Scissors", false);
-            string emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPSStart" }, new string[] { "Engi/RPS/EngiRPSLoop" }, new string[] { "" }, "", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            string emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPSStart" }, new string[] { "Engi/RPS/EngiRPSLoop" }, new string[] { "RPS_Engi_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPS_RWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPS_RWin" }, new string[] { "RPS_Engi_WinRock" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPS_RLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPS_RLose" }, new string[] { "RPS_Engi_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPS_PWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPS_PWin" }, new string[] { "RPS_Engi_WinPaper" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPS_PLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPS_PLose" }, new string[] { "RPS_Engi_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPS_SWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPS_SWin" }, new string[] { "RPS_Engi_WinScissors" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPS_SLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPS_SLose" }, new string[] { "RPS_Engi_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_Start" }, new string[] { "Demo/RPS/DemoRPS_Loop" }, new string[] { "" }, "", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
-            RPS_Start_Emotes.Add(emote);               
-                                                       
-            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_RWin" }, new string[] { "" }, "");
-            RPS_Win_Emotes.Add(emote);                 
-            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_RLose" }, new string[] { "" }, "");
-            RPS_Loss_Emotes.Add(emote);                
-                                                       
-            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_PWin" }, new string[] { "" }, "");
-            RPS_Win_Emotes.Add(emote);                 
-            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_PLose" }, new string[] { "" }, "");
-            RPS_Loss_Emotes.Add(emote);                
-                                                       
-            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_SWin" }, new string[] { "" }, "");
-            RPS_Win_Emotes.Add(emote);                 
-            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_SLose" }, new string[] { "" }, "");
-            RPS_Loss_Emotes.Add(emote);
-
-
-            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_Start" }, new string[] { "Soldier/RPS/SoldierRPS_Loop" }, new string[] { "" }, "", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_Start" }, new string[] { "Demo/RPS/DemoRPS_Loop" }, new string[] { "RPS_Demo_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_RWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_RWin" }, new string[] { "RPS_Demo_WinRock" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_RLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_RLose" }, new string[] { "RPS_Demo_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_PWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_PWin" }, new string[] { "RPS_Demo_WinPaper" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_PLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_PLose" }, new string[] { "RPS_Demo_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_SWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_SWin" }, new string[] { "RPS_Demo_WinScissors" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_SLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_SLose" }, new string[] { "RPS_Demo_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_Start" }, new string[] { "Heavy/RPS/HeavyRPS_Loop" }, new string[] { "" }, "", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_Start" }, new string[] { "Soldier/RPS/SoldierRPS_Loop" }, new string[] { "RPS_Soldier_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_RWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_RWin" }, new string[] { "RPS_Soldier_WinRock" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_RLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_RLose" }, new string[] { "RPS_Soldier_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_PWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_PWin" }, new string[] { "RPS_Soldier_WinPaper" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_PLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_PLose" }, new string[] { "RPS_Soldier_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_SWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_SWin" }, new string[] { "RPS_Soldier_WinScissors" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_SLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_SLose" }, new string[] { "RPS_Soldier_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_Start" }, new string[] { "Medic/RPS/MedicRPS_Loop" }, new string[] { "" }, "", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_Start" }, new string[] { "Heavy/RPS/HeavyRPS_Loop" }, new string[] { "RPS_Heavy_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_RWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_RWin" }, new string[] { "RPS_Heavy_WinRock" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_RLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_RLose" }, new string[] { "RPS_Heavy_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_PWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_PWin" }, new string[] { "RPS_Heavy_WinPaper" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_PLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_PLose" }, new string[] { "RPS_Heavy_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_SWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_SWin" }, new string[] { "RPS_Heavy_WinScissors" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_SLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_SLose" }, new string[] { "RPS_Heavy_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_Start" }, new string[] { "Pyro/RPS/PyroRPS_Loop" }, new string[] { "" }, "", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_Start" }, new string[] { "Medic/RPS/MedicRPS_Loop" }, new string[] { "RPS_Medic_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_RWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_RWin" }, new string[] { "RPS_Medic_WinRock" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_RLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_RLose" }, new string[] { "RPS_Medic_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_PWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_PWin" }, new string[] { "RPS_Medic_WinPaper" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_PLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_PLose" }, new string[] { "RPS_Medic_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_SWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_SWin" }, new string[] { "RPS_Medic_WinScissors" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_SLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_SLose" }, new string[] { "RPS_Medic_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_Start" }, new string[] { "Scout/RPS/ScoutRPS_Loop" }, new string[] { "" }, "", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_Start" }, new string[] { "Pyro/RPS/PyroRPS_Loop" }, new string[] { "RPS_Pyro_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_RWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_RWin" }, new string[] { "RPS_Pyro_WinRock" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_RLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_RLose" }, new string[] { "RPS_Pyro_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_PWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_PWin" }, new string[] { "RPS_Pyro_WinPaper" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_PLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_PLose" }, new string[] { "RPS_Pyro_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_SWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_SWin" }, new string[] { "RPS_Pyro_WinScissors" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_SLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_SLose" }, new string[] { "RPS_Pyro_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_Start" }, new string[] { "Sniper/RPS/SniperRPS_Loop" }, new string[] { "" }, "", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_Start" }, new string[] { "Scout/RPS/ScoutRPS_Loop" }, new string[] { "RPS_Scout_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_RWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_RWin" }, new string[] { "RPS_Scout_WinRock" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_RLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_RLose" }, new string[] { "RPS_Scout_LossRock" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_PWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_PWin" }, new string[] { "RPS_Scout_WinPaper" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_PLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_PLose" }, new string[] { "RPS_Scout_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_SWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_SWin" }, new string[] { "RPS_Scout_WinScissors" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_SLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_SLose" }, new string[] { "RPS_Scout_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_Start" }, new string[] { "Spy/RPS/SpyRPS_Loop" }, new string[] { "" }, "", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_Start" }, new string[] { "Sniper/RPS/SniperRPS_Loop" }, new string[] { "RPS_Sniper_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_RWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_RWin" }, new string[] { "RPS_Sniper_WinRock" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_RLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_RLose" }, new string[] { "RPS_Sniper_LossRock" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_PWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_PWin" }, new string[] { "RPS_Sniper_WinPaper" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_PLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_PLose" }, new string[] { "RPS_Sniper_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
-            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_SWin" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_SWin" }, new string[] { "RPS_Sniper_WinScissors" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_SLose" }, new string[] { "" }, "");
+            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_SLose" }, new string[] { "RPS_Sniper_Loss" }, "");
+            RPS_Loss_Emotes.Add(emote);
+
+
+            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_Start" }, new string[] { "Spy/RPS/SpyRPS_Loop" }, new string[] { "RPS_Spy_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            RPS_Start_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_RWin" }, new string[] { "RPS_Spy_WinRock" }, "");
+            RPS_Win_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_RLose" }, new string[] { "RPS_Spy_LossRock" }, "");
+            RPS_Loss_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_PWin" }, new string[] { "RPS_Spy_WinPaper" }, "");
+            RPS_Win_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_PLose" }, new string[] { "RPS_Spy_LossPaper" }, "");
+            RPS_Loss_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_SWin" }, new string[] { "RPS_Spy_WinScissors" }, "");
+            RPS_Win_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_SLose" }, new string[] { "RPS_Spy_LossScissors" }, "");
             RPS_Loss_Emotes.Add(emote);
         }
 
@@ -311,6 +313,9 @@ namespace TitanFall2Emotes
                     new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "RPS_Start", Random.Range(0, RPS_Start_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
                 }
             }
+
+
+            DEBUGHANDLE(mapper, newAnimation);
         }
 
         void Update()
@@ -367,6 +372,149 @@ namespace TitanFall2Emotes
             string emote = AnimClip[0].Split('/')[AnimClip[0].Split('/').Length - 1]; ;
             CustomEmotesAPI.AddCustomAnimation(primary.ToArray(), false, wwise, stopwwise.ToArray(), visible: false);
             return emote;
+        }
+        void DEBUG()
+        {
+            CustomEmotesAPI.AddNonAnimatingEmote("SpawnEnemies");
+            CustomEmotesAPI.BlackListEmote("SpawnEnemies");
+            CustomEmotesAPI.AddNonAnimatingEmote("EnemyHonda");
+            CustomEmotesAPI.BlackListEmote("EnemyHonda");
+            CustomEmotesAPI.AddNonAnimatingEmote("EnemyCum");
+            CustomEmotesAPI.BlackListEmote("EnemyCum");
+            CustomEmotesAPI.AddNonAnimatingEmote("EnemyDodge");
+            CustomEmotesAPI.BlackListEmote("EnemyDodge");
+            CustomEmotesAPI.AddNonAnimatingEmote("EnemyStand");
+            CustomEmotesAPI.BlackListEmote("EnemyStand");
+            CustomEmotesAPI.AddNonAnimatingEmote("EnemyJoin");
+            CustomEmotesAPI.BlackListEmote("EnemyJoin");
+            CustomEmotesAPI.AddNonAnimatingEmote("EnemyNone");
+            CustomEmotesAPI.BlackListEmote("EnemyNone");
+            CustomEmotesAPI.AddNonAnimatingEmote("SpawnBody");
+            CustomEmotesAPI.BlackListEmote("SpawnBody");
+        }
+        void DEBUGHANDLE(BoneMapper mapper, string newAnimation)
+        {
+            if (mapper.worldProp)
+            {
+                return;
+            }
+            if (newAnimation == "SpawnEnemies")
+            {
+                StartCoroutine(SpawnEnemies());
+            }
+            if (newAnimation == "EnemyHonda")
+            {
+                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
+                {
+                    if (item != CustomEmotesAPI.localMapper)
+                    {
+                        CustomEmotesAPI.PlayAnimation("HondaStep", item);
+                    }
+                }
+            }
+            if (newAnimation == "EnemyNone")
+            {
+                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
+                {
+                    if (item != CustomEmotesAPI.localMapper)
+                    {
+                        CustomEmotesAPI.PlayAnimation("none", item);
+                    }
+                }
+            }
+            if (newAnimation == "EnemyJoin")
+            {
+                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
+                {
+                    if (item != CustomEmotesAPI.localMapper && item.currentEmoteSpot)
+                    {
+                        item.JoinEmoteSpot();
+                    }
+                }
+            }
+            if (newAnimation == "EnemyStand")
+            {
+                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
+                {
+                    if (item != CustomEmotesAPI.localMapper)
+                    {
+                        CustomEmotesAPI.PlayAnimation("StoodHere", item);
+                    }
+                }
+            }
+            if (newAnimation == "EnemyDodge")
+            {
+                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
+                {
+                    if (item != CustomEmotesAPI.localMapper)
+                    {
+                        CustomEmotesAPI.PlayAnimation("DuckThisOneIdle", item);
+                    }
+                }
+            }
+            if (newAnimation == "EnemyCum")
+            {
+                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
+                {
+                    if (item != CustomEmotesAPI.localMapper)
+                    {
+                        CustomEmotesAPI.PlayAnimation("Cum Throne", item);
+                    }
+                }
+            }
+            if (newAnimation == "SpawnBody")
+            {
+                switch (Random.Range(0, 10))
+                {
+                    case 0:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Captain");
+                        break;
+                    case 1:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Commando");
+                        break;
+                    case 2:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Bandit2");
+                        break;
+                    case 3:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Artificer");
+                        break;
+                    case 4:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Mercenary");
+                        break;
+                    case 5:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body robpaladinbody");
+                        break;
+                    case 6:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body soldier");
+                        break;
+                    case 7:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body MULT");
+                        break;
+                    case 8:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Engi");
+                        break;
+                    case 9:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body huntress");
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+        IEnumerator SpawnEnemies()
+        {
+            RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body BeetleQueen");
+            yield return new WaitForSeconds(.75f);
+            RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Larva");
+            yield return new WaitForSeconds(.75f);
+            RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body BeetleGuard");
+            yield return new WaitForSeconds(.75f);
+            RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Mithrix");
+            yield return new WaitForSeconds(.75f);
+            RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body ClayTemplar");
+            yield return new WaitForSeconds(.75f);
+            RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Aurelionite");
         }
     }
 }
