@@ -14,11 +14,13 @@
 
   <ItemGroup>
     <None Remove="caramell.bnk" />
+    <None Remove="Init.bnk" />
     <None Remove="tf2.bnk" />
     <None Remove="tf2emotes" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Init.bnk" />
     <EmbeddedResource Include="tf2.bnk" />
     <EmbeddedResource Include="tf2emotes" />
   </ItemGroup>

@@ -26,6 +26,7 @@ namespace TitanFall2Emotes
         public const string PluginAuthor = "Nunchuk";
         public const string PluginName = "TF2Emotes";
         public const string PluginVersion = "1.0.0";
+        internal static List<string> Conga_Emotes = new List<string>();
         internal static List<string> RPS_Start_Emotes = new List<string>();
         internal static List<string> RPS_Loss_Emotes = new List<string>();
         internal static List<string> RPS_Win_Emotes = new List<string>();
@@ -33,10 +34,12 @@ namespace TitanFall2Emotes
         public void Awake()
         {
             Assets.PopulateAssets();
+            Assets.AddSoundBank("Init.bnk");
             Assets.AddSoundBank("tf2.bnk");
             Assets.LoadSoundBanks();
             Rancho();
             RPS();
+            Conga();
             Register();
             DEBUG();
             CustomEmotesAPI.animChanged += CustomEmotesAPI_animChanged;
@@ -60,7 +63,7 @@ namespace TitanFall2Emotes
             CustomEmotesAPI.AddNonAnimatingEmote("Rock", false);
             CustomEmotesAPI.AddNonAnimatingEmote("Paper", false);
             CustomEmotesAPI.AddNonAnimatingEmote("Scissors", false);
-            string emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPSStart" }, new string[] { "Engi/RPS/EngiRPSLoop" }, new string[] { "RPS_Engi_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            string emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPSStart" }, new string[] { "Engi/RPS/EngiRPSLoop" }, new string[] { "RPS_Engi_Initiate" }, "RPS", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
             emote = AddHiddenAnimation(new string[] { "Engi/RPS/EngiRPS_RWin" }, new string[] { "RPS_Engi_WinRock" }, "");
@@ -79,7 +82,7 @@ namespace TitanFall2Emotes
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_Start" }, new string[] { "Demo/RPS/DemoRPS_Loop" }, new string[] { "RPS_Demo_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_Start" }, new string[] { "Demo/RPS/DemoRPS_Loop" }, new string[] { "RPS_Demo_Initiate" }, "RPS", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
             emote = AddHiddenAnimation(new string[] { "Demo/RPS/DemoRPS_RWin" }, new string[] { "RPS_Demo_WinRock" }, "");
@@ -98,7 +101,7 @@ namespace TitanFall2Emotes
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_Start" }, new string[] { "Soldier/RPS/SoldierRPS_Loop" }, new string[] { "RPS_Soldier_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_Start" }, new string[] { "Soldier/RPS/SoldierRPS_Loop" }, new string[] { "RPS_Soldier_Initiate" }, "RPS", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
             emote = AddHiddenAnimation(new string[] { "Soldier/RPS/SoldierRPS_RWin" }, new string[] { "RPS_Soldier_WinRock" }, "");
@@ -117,7 +120,7 @@ namespace TitanFall2Emotes
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_Start" }, new string[] { "Heavy/RPS/HeavyRPS_Loop" }, new string[] { "RPS_Heavy_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_Start" }, new string[] { "Heavy/RPS/HeavyRPS_Loop" }, new string[] { "RPS_Heavy_Initiate" }, "RPS", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
             emote = AddHiddenAnimation(new string[] { "Heavy/RPS/HeavyRPS_RWin" }, new string[] { "RPS_Heavy_WinRock" }, "");
@@ -136,7 +139,7 @@ namespace TitanFall2Emotes
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_Start" }, new string[] { "Medic/RPS/MedicRPS_Loop" }, new string[] { "RPS_Medic_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_Start" }, new string[] { "Medic/RPS/MedicRPS_Loop" }, new string[] { "RPS_Medic_Initiate" }, "RPS", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
             emote = AddHiddenAnimation(new string[] { "Medic/RPS/MedicRPS_RWin" }, new string[] { "RPS_Medic_WinRock" }, "");
@@ -155,7 +158,7 @@ namespace TitanFall2Emotes
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_Start" }, new string[] { "Pyro/RPS/PyroRPS_Loop" }, new string[] { "RPS_Pyro_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_Start" }, new string[] { "Pyro/RPS/PyroRPS_Loop" }, new string[] { "RPS_Pyro_Initiate" }, "RPS", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
             emote = AddHiddenAnimation(new string[] { "Pyro/RPS/PyroRPS_RWin" }, new string[] { "RPS_Pyro_WinRock" }, "");
@@ -174,7 +177,7 @@ namespace TitanFall2Emotes
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_Start" }, new string[] { "Scout/RPS/ScoutRPS_Loop" }, new string[] { "RPS_Scout_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_Start" }, new string[] { "Scout/RPS/ScoutRPS_Loop" }, new string[] { "RPS_Scout_Initiate" }, "RPS", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
             emote = AddHiddenAnimation(new string[] { "Scout/RPS/ScoutRPS_RWin" }, new string[] { "RPS_Scout_WinRock" }, "");
@@ -193,7 +196,7 @@ namespace TitanFall2Emotes
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_Start" }, new string[] { "Sniper/RPS/SniperRPS_Loop" }, new string[] { "RPS_Sniper_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_Start" }, new string[] { "Sniper/RPS/SniperRPS_Loop" }, new string[] { "RPS_Sniper_Initiate" }, "RPS", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
             emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_RWin" }, new string[] { "RPS_Sniper_WinRock" }, "");
@@ -212,7 +215,7 @@ namespace TitanFall2Emotes
             RPS_Loss_Emotes.Add(emote);
 
 
-            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_Start" }, new string[] { "Spy/RPS/SpyRPS_Loop" }, new string[] { "RPS_Spy_Initiate" }, "TF2", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
+            emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_Start" }, new string[] { "Spy/RPS/SpyRPS_Loop" }, new string[] { "RPS_Spy_Initiate" }, "RPS", new JoinSpot[] { new JoinSpot("RPSJoinSpot", new Vector3(0, 0, 1.5f)) });
             RPS_Start_Emotes.Add(emote);
 
             emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_RWin" }, new string[] { "RPS_Spy_WinRock" }, "");
@@ -229,6 +232,29 @@ namespace TitanFall2Emotes
             RPS_Win_Emotes.Add(emote);
             emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_SLose" }, new string[] { "RPS_Spy_LossScissors" }, "");
             RPS_Loss_Emotes.Add(emote);
+        }
+        public void Conga()
+        {
+            CustomEmotesAPI.AddNonAnimatingEmote("Conga");
+            string emote;
+            emote = AddHiddenAnimation(new string[] { "Conga/Demo_Conga" }, new string[] { "Conga_Demo" }, "Conga", true);
+            Conga_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Conga/Engi_Conga" }, new string[] { "Conga_Engi" }, "Conga", true);
+            Conga_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Conga/Heavy_Conga" }, new string[] { "Conga_Heavy" }, "Conga", true);
+            Conga_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Conga/Medic_Conga" }, new string[] { "Conga_Medic" }, "Conga", true);
+            Conga_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Conga/Pyro_Conga" }, new string[] { "Conga_Pyro" }, "Conga", true);
+            Conga_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Conga/Scout_Conga" }, new string[] { "Conga_Scout" }, "Conga", true);
+            Conga_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Conga/Sniper_Conga" }, new string[] { "Conga_Sniper" }, "Conga", true);
+            Conga_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Conga/Soldier_Conga" }, new string[] { "Conga_Soldier" }, "Conga", true);
+            Conga_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Conga/Spy_Conga" }, new string[] { "Conga_Spy" }, "Conga", true);
+            Conga_Emotes.Add(emote);
         }
 
         private void CustomEmotesAPI_emoteSpotJoined_Body(GameObject emoteSpot, BoneMapper joiner, BoneMapper host)
@@ -277,6 +303,10 @@ namespace TitanFall2Emotes
 
         private void CustomEmotesAPI_animChanged(string newAnimation, BoneMapper mapper)
         {
+            if (!mapper.gameObject.GetComponent<TF2EmoteTracker>())
+            {
+                mapper.gameObject.AddComponent<TF2EmoteTracker>();
+            }
             if (newAnimation == "RanchoRelaxo")
             {
                 GameObject g = GameObject.Instantiate(Assets.Load<GameObject>("@BadAssEmotes_badassemotes:Assets/Engi/Rancho/RanchoRelaxo.prefab"));
@@ -313,8 +343,24 @@ namespace TitanFall2Emotes
                     new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "RPS_Start", Random.Range(0, RPS_Start_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
                 }
             }
+            if (newAnimation == "Conga") //audio not syncing cause they are different anims
+            {
+                if (NetworkServer.active)
+                {
+                    mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation = "Medic_Conga";
+                    new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Conga_Start", Random.Range(0, Conga_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
+                }
+            }
+            if (newAnimation.EndsWith("_Conga") && !mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation.EndsWith("_Conga"))
+            {
+                if (NetworkServer.active)
+                {
+                    mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation = "Medic_Conga";
+                    new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Conga_Start", Random.Range(0, Conga_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
+                }
+            }
 
-
+            mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation = newAnimation;
             DEBUGHANDLE(mapper, newAnimation);
         }
 
@@ -373,6 +419,22 @@ namespace TitanFall2Emotes
             CustomEmotesAPI.AddCustomAnimation(primary.ToArray(), false, wwise, stopwwise.ToArray(), visible: false);
             return emote;
         }
+        internal string AddHiddenAnimation(string[] AnimClip, string[] wwise, string stopWwise, bool sync)
+        {
+            List<string> stopwwise = new List<string>();
+            foreach (var item in wwise)
+            {
+                stopwwise.Add($"Stop_{stopWwise}");
+            }
+            List<AnimationClip> primary = new List<AnimationClip>();
+            foreach (var item in AnimClip)
+            {
+                primary.Add(Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{item}.anim"));
+            }
+            string emote = AnimClip[0].Split('/')[AnimClip[0].Split('/').Length - 1]; ;
+            CustomEmotesAPI.AddCustomAnimation(primary.ToArray(), true, wwise, stopwwise.ToArray(), visible: false, syncAudio: sync);
+            return emote;
+        }
         void DEBUG()
         {
             CustomEmotesAPI.AddNonAnimatingEmote("SpawnEnemies");
@@ -387,8 +449,16 @@ namespace TitanFall2Emotes
             CustomEmotesAPI.BlackListEmote("EnemyStand");
             CustomEmotesAPI.AddNonAnimatingEmote("EnemyJoin");
             CustomEmotesAPI.BlackListEmote("EnemyJoin");
+            CustomEmotesAPI.AddNonAnimatingEmote("EnemyRPS");
+            CustomEmotesAPI.BlackListEmote("EnemyRPS");
+            CustomEmotesAPI.AddNonAnimatingEmote("EnemyConga");
+            CustomEmotesAPI.BlackListEmote("EnemyConga");
             CustomEmotesAPI.AddNonAnimatingEmote("EnemyNone");
             CustomEmotesAPI.BlackListEmote("EnemyNone");
+            CustomEmotesAPI.AddNonAnimatingEmote("EnemyGetDown");
+            CustomEmotesAPI.BlackListEmote("EnemyGetDown");
+            CustomEmotesAPI.AddNonAnimatingEmote("EnemyBreak");
+            CustomEmotesAPI.BlackListEmote("EnemyBreak");
             CustomEmotesAPI.AddNonAnimatingEmote("SpawnBody");
             CustomEmotesAPI.BlackListEmote("SpawnBody");
         }
@@ -422,6 +492,26 @@ namespace TitanFall2Emotes
                     }
                 }
             }
+            if (newAnimation == "EnemyConga")
+            {
+                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
+                {
+                    if (item != CustomEmotesAPI.localMapper)
+                    {
+                        CustomEmotesAPI.PlayAnimation("Conga", item);
+                    }
+                }
+            }
+            if (newAnimation == "EnemyRPS")
+            {
+                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
+                {
+                    if (item != CustomEmotesAPI.localMapper)
+                    {
+                        CustomEmotesAPI.PlayAnimation("Rock Paper Scissors", item);
+                    }
+                }
+            }
             if (newAnimation == "EnemyJoin")
             {
                 foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
@@ -439,6 +529,26 @@ namespace TitanFall2Emotes
                     if (item != CustomEmotesAPI.localMapper)
                     {
                         CustomEmotesAPI.PlayAnimation("StoodHere", item);
+                    }
+                }
+            }
+            if (newAnimation == "EnemyBreak")
+            {
+                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
+                {
+                    if (item != CustomEmotesAPI.localMapper)
+                    {
+                        CustomEmotesAPI.PlayAnimation("Breakneck", item);
+                    }
+                }
+            }
+            if (newAnimation == "EnemyGetDown")
+            {
+                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
+                {
+                    if (item != CustomEmotesAPI.localMapper)
+                    {
+                        CustomEmotesAPI.PlayAnimation("GetDown", item);
                     }
                 }
             }
@@ -485,7 +595,7 @@ namespace TitanFall2Emotes
                         RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body robpaladinbody");
                         break;
                     case 6:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body soldier");
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body railgunner");
                         break;
                     case 7:
                         RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body MULT");
