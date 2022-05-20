@@ -27,9 +27,13 @@ namespace TitanFall2Emotes
         public const string PluginName = "TF2Emotes";
         public const string PluginVersion = "1.0.0";
         internal static List<string> Conga_Emotes = new List<string>();
+        internal static List<string> KazotskyKick_Emotes = new List<string>();
         internal static List<string> RPS_Start_Emotes = new List<string>();
         internal static List<string> RPS_Loss_Emotes = new List<string>();
         internal static List<string> RPS_Win_Emotes = new List<string>();
+        internal static List<string> Flip_Wait_Emotes = new List<string>();
+        internal static List<string> Flip_Flip_Emotes = new List<string>();
+        internal static List<string> Flip_Throw_Emotes = new List<string>();
         internal static Shader defaultShader = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Commando/CommandoBody.prefab").WaitForCompletion().GetComponentInChildren<SkinnedMeshRenderer>().material.shader;
         public void Awake()
         {
@@ -40,6 +44,8 @@ namespace TitanFall2Emotes
             Rancho();
             RPS();
             Conga();
+            Flip();
+            KazotskyKick();
             Register();
             DEBUG();
             CustomEmotesAPI.animChanged += CustomEmotesAPI_animChanged;
@@ -56,6 +62,90 @@ namespace TitanFall2Emotes
             AddAnimation("Engi/Rancho/engiRanchoBurp", "", "Engi/Rancho/engiRanchoPassive", false, false, false);
             AddAnimation("Engi/Rancho/engiRanchoBigDrink", "", "Engi/Rancho/engiRanchoPassive", false, false, false);
             AddAnimation("Engi/Rancho/engiRanchoQuickDrink", "", "Engi/Rancho/engiRanchoPassive", false, false, false);
+        }
+        public void Flip()
+        {
+            CustomEmotesAPI.AddNonAnimatingEmote("Flippin' Awesome");
+
+            string emote = AddHiddenAnimation(new string[] { "Demo/Flip/Demo_Flip_Start" }, new string[] { "Demo/Flip/Demo_Flip_Wait" }, new string[] { "Demo_Flip_Waiting" }, "Flip", new JoinSpot[] { new JoinSpot("FlipJoinSpot", new Vector3(0, 0, 1.5f)) });
+            Flip_Wait_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Demo/Flip/Demo_Flip_Throw" }, new string[] { "Demo_Flip_Throw" }, "");
+            Flip_Throw_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Demo/Flip/Demo_Flip_Flip" }, new string[] { "Demo_Flip_Flip" }, "");
+            Flip_Flip_Emotes.Add(emote);
+
+
+            emote = AddHiddenAnimation(new string[] { "Engi/Flip/Engi_Flip_Start" }, new string[] { "Engi/Flip/Engi_Flip_Wait" }, new string[] { "Engi_Flip_Waiting" }, "Flip", new JoinSpot[] { new JoinSpot("FlipJoinSpot", new Vector3(0, 0, 1.5f)) });
+            Flip_Wait_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Engi/Flip/Engi_Flip_Throw" }, new string[] { "Engi_Flip_Throw" }, "");
+            Flip_Throw_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Engi/Flip/Engi_Flip_Flip" }, new string[] { "Engi_Flip_Flip" }, "");
+            Flip_Flip_Emotes.Add(emote);
+
+
+            emote = AddHiddenAnimation(new string[] { "Medic/Flip/Medic_Flip_Start" }, new string[] { "Medic/Flip/Medic_Flip_Wait" }, new string[] { "Medic_Flip_Waiting" }, "Flip", new JoinSpot[] { new JoinSpot("FlipJoinSpot", new Vector3(0, 0, 1.5f)) });
+            Flip_Wait_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Medic/Flip/Medic_Flip_Throw" }, new string[] { "Medic_Flip_Throw" }, "");
+            Flip_Throw_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Medic/Flip/Medic_Flip_Flip" }, new string[] { "Medic_Flip_Flip" }, "");
+            Flip_Flip_Emotes.Add(emote);
+
+
+            emote = AddHiddenAnimation(new string[] { "Heavy/Flip/Heavy_Flip_Start" }, new string[] { "Heavy/Flip/Heavy_Flip_Wait" }, new string[] { "Heavy_Flip_Waiting" }, "Flip", new JoinSpot[] { new JoinSpot("FlipJoinSpot", new Vector3(0, 0, 1.5f)) });
+            Flip_Wait_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Heavy/Flip/Heavy_Flip_Throw" }, new string[] { "Heavy_Flip_Throw" }, "");
+            Flip_Throw_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Heavy/Flip/Heavy_Flip_Flip" }, new string[] { "Heavy_Flip_Flip" }, "");
+            Flip_Flip_Emotes.Add(emote);
+
+
+            emote = AddHiddenAnimation(new string[] { "Pyro/Flip/Pyro_Flip_Start" }, new string[] { "Pyro/Flip/Pyro_Flip_Wait" }, new string[] { "Pyro_Flip_Waiting" }, "Flip", new JoinSpot[] { new JoinSpot("FlipJoinSpot", new Vector3(0, 0, 1.5f)) });
+            Flip_Wait_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Pyro/Flip/Pyro_Flip_Throw" }, new string[] { "Pyro_Flip_Throw" }, "");
+            Flip_Throw_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Pyro/Flip/Pyro_Flip_Flip" }, new string[] { "Pyro_Flip_Flip" }, "");
+            Flip_Flip_Emotes.Add(emote);
+
+
+            emote = AddHiddenAnimation(new string[] { "Scout/Flip/Scout_Flip_Start" }, new string[] { "Scout/Flip/Scout_Flip_Wait" }, new string[] { "Scout_Flip_Waiting" }, "Flip", new JoinSpot[] { new JoinSpot("FlipJoinSpot", new Vector3(0, 0, 1.5f)) });
+            Flip_Wait_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Scout/Flip/Scout_Flip_Throw" }, new string[] { "Scout_Flip_Throw" }, "");
+            Flip_Throw_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Scout/Flip/Scout_Flip_Flip" }, new string[] { "Scout_Flip_Flip" }, "");
+            Flip_Flip_Emotes.Add(emote);
+
+
+            emote = AddHiddenAnimation(new string[] { "Sniper/Flip/Sniper_Flip_Start" }, new string[] { "Sniper/Flip/Sniper_Flip_Wait" }, new string[] { "Sniper_Flip_Waiting" }, "Flip", new JoinSpot[] { new JoinSpot("FlipJoinSpot", new Vector3(0, 0, 1.5f)) });
+            Flip_Wait_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Sniper/Flip/Sniper_Flip_Throw" }, new string[] { "Sniper_Flip_Throw" }, "");
+            Flip_Throw_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Sniper/Flip/Sniper_Flip_Flip" }, new string[] { "Sniper_Flip_Flip" }, "");
+            Flip_Flip_Emotes.Add(emote);
+
+
+            emote = AddHiddenAnimation(new string[] { "Soldier/Flip/Soldier_Flip_Start" }, new string[] { "Soldier/Flip/Soldier_Flip_Wait" }, new string[] { "Soldier_Flip_Waiting" }, "Flip", new JoinSpot[] { new JoinSpot("FlipJoinSpot", new Vector3(0, 0, 1.5f)) });
+            Flip_Wait_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Soldier/Flip/Soldier_Flip_Throw" }, new string[] { "Soldier_Flip_Throw" }, "");
+            Flip_Throw_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Soldier/Flip/Soldier_Flip_Flip" }, new string[] { "Soldier_Flip_Flip" }, "");
+            Flip_Flip_Emotes.Add(emote);
+
+
+            emote = AddHiddenAnimation(new string[] { "Spy/Flip/Spy_Flip_Start" }, new string[] { "Spy/Flip/Spy_Flip_Wait" }, new string[] { "Spy_Flip_Waiting" }, "Flip", new JoinSpot[] { new JoinSpot("FlipJoinSpot", new Vector3(0, 0, 1.5f)) });
+            Flip_Wait_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Spy/Flip/Spy_Flip_Throw" }, new string[] { "Spy_Flip_Throw" }, "");
+            Flip_Throw_Emotes.Add(emote);
+            emote = AddHiddenAnimation(new string[] { "Spy/Flip/Spy_Flip_Flip" }, new string[] { "Spy_Flip_Flip" }, "");
+            Flip_Flip_Emotes.Add(emote);
         }
         public void RPS()
         {
@@ -201,7 +291,7 @@ namespace TitanFall2Emotes
 
             emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_RWin" }, new string[] { "RPS_Sniper_WinRock" }, "");
             RPS_Win_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_RLose" }, new string[] { "RPS_Sniper_LossRock" }, "");
+            emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_RLose" }, new string[] { "RPS_Sniper_Loss" }, "");
             RPS_Loss_Emotes.Add(emote);
 
             emote = AddHiddenAnimation(new string[] { "Sniper/RPS/SniperRPS_PWin" }, new string[] { "RPS_Sniper_WinPaper" }, "");
@@ -233,28 +323,69 @@ namespace TitanFall2Emotes
             emote = AddHiddenAnimation(new string[] { "Spy/RPS/SpyRPS_SLose" }, new string[] { "RPS_Spy_LossScissors" }, "");
             RPS_Loss_Emotes.Add(emote);
         }
+        public void KazotskyKick()
+        {
+            CustomEmotesAPI.AddNonAnimatingEmote("Kazotsky Kick");
+            string emote;
+            emote = AddHiddenAnimation(new string[] { "KazotskyKick/Kazotsky_Demo_Start" }, new string[] { "Kazotsky" }, "Kazotsky", true, new string[] { "KazotskyKick/Kazotsky_Demo_Loop" }); //names are wrong, should be Kazotsky_Sniper_Loop
+            KazotskyKick_Emotes.Add(emote);
+            int syncpos = BoneMapper.animClips[emote].syncPos;
+            emote = AddHiddenAnimation(new string[] { "KazotskyKick/Kazotsky_Engi_Start" }, new string[] { "Kazotsky" }, "Kazotsky", true, new string[] { "KazotskyKick/Kazotsky_Engi_Loop" });
+            KazotskyKick_Emotes.Add(emote);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "KazotskyKick/Kazotsky_Heavy_Start" }, new string[] { "Kazotsky" }, "Kazotsky", true, new string[] { "KazotskyKick/Kazotsky_Heavy_Loop" });
+            KazotskyKick_Emotes.Add(emote);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "KazotskyKick/Kazotsky_Medic_Start" }, new string[] { "Kazotsky" }, "Kazotsky", true, new string[] { "KazotskyKick/Kazotsky_Medic_Loop" });
+            KazotskyKick_Emotes.Add(emote);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "KazotskyKick/Kazotsky_Pyro_Start" }, new string[] { "Kazotsky" }, "Kazotsky", true, new string[] { "KazotskyKick/Kazotsky_Pyro_Loop" });
+            KazotskyKick_Emotes.Add(emote);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "KazotskyKick/Kazotsky_Scout_Start" }, new string[] { "Kazotsky" }, "Kazotsky", true, new string[] { "KazotskyKick/Kazotsky_Scout_Loop" });
+            KazotskyKick_Emotes.Add(emote);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "KazotskyKick/Kazotsky_Sniper_Start" }, new string[] { "Kazotsky" }, "Kazotsky", true, new string[] { "KazotskyKick/Kazotsky_Sniper_Loop" });
+            KazotskyKick_Emotes.Add(emote);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "KazotskyKick/Kazotsky_Soldier_Start" }, new string[] { "Kazotsky" }, "Kazotsky", true, new string[] { "KazotskyKick/Kazotsky_Soldier_Loop" });
+            KazotskyKick_Emotes.Add(emote);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "KazotskyKick/Kazotsky_Spy_Start" }, new string[] { "Kazotsky" }, "Kazotsky", true, new string[] { "KazotskyKick/Kazotsky_Spy_Loop" });
+            KazotskyKick_Emotes.Add(emote);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+        }
         public void Conga()
         {
             CustomEmotesAPI.AddNonAnimatingEmote("Conga");
             string emote;
-            emote = AddHiddenAnimation(new string[] { "Conga/Demo_Conga" }, new string[] { "Conga_Demo" }, "Conga", true);
+            emote = AddHiddenAnimation(new string[] { "Conga/Demo_Conga" }, new string[] { "Conga" }, "Conga", true);
             Conga_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Conga/Engi_Conga" }, new string[] { "Conga_Engi" }, "Conga", true);
+            int syncpos = BoneMapper.animClips[emote].syncPos;
+            emote = AddHiddenAnimation(new string[] { "Conga/Engi_Conga" }, new string[] { "Conga" }, "Conga", true);
             Conga_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Conga/Heavy_Conga" }, new string[] { "Conga_Heavy" }, "Conga", true);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "Conga/Heavy_Conga" }, new string[] { "Conga" }, "Conga", true);
             Conga_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Conga/Medic_Conga" }, new string[] { "Conga_Medic" }, "Conga", true);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "Conga/Medic_Conga" }, new string[] { "Conga" }, "Conga", true);
             Conga_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Conga/Pyro_Conga" }, new string[] { "Conga_Pyro" }, "Conga", true);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "Conga/Pyro_Conga" }, new string[] { "Conga" }, "Conga", true);
             Conga_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Conga/Scout_Conga" }, new string[] { "Conga_Scout" }, "Conga", true);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "Conga/Scout_Conga" }, new string[] { "Conga" }, "Conga", true);
             Conga_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Conga/Sniper_Conga" }, new string[] { "Conga_Sniper" }, "Conga", true);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "Conga/Sniper_Conga" }, new string[] { "Conga" }, "Conga", true);
             Conga_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Conga/Soldier_Conga" }, new string[] { "Conga_Soldier" }, "Conga", true);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "Conga/Soldier_Conga" }, new string[] { "Conga" }, "Conga", true);
             Conga_Emotes.Add(emote);
-            emote = AddHiddenAnimation(new string[] { "Conga/Spy_Conga" }, new string[] { "Conga_Spy" }, "Conga", true);
+            BoneMapper.animClips[emote].syncPos = syncpos;
+            emote = AddHiddenAnimation(new string[] { "Conga/Spy_Conga" }, new string[] { "Conga" }, "Conga", true);
             Conga_Emotes.Add(emote);
+            BoneMapper.animClips[emote].syncPos = syncpos;
         }
 
         private void CustomEmotesAPI_emoteSpotJoined_Body(GameObject emoteSpot, BoneMapper joiner, BoneMapper host)
@@ -297,6 +428,16 @@ namespace TitanFall2Emotes
                         new SyncRandomEmoteToHost(host.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "RPS_Loss", hostSpot, host.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
                         new SyncRandomEmoteToHost(joiner.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "RPS_Win", clientSpot, host.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
                     }
+                }
+            }
+            else if (emoteSpotName == "FlipJoinSpot")
+            {
+                if (NetworkServer.active)
+                {
+                    int hostSpot = host.props[0].GetComponent<Flip>().charType;
+                    int clientSpot = Random.Range(0, Flip_Flip_Emotes.Count);
+                    new SyncRandomEmoteToHost(host.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Flip_Throw", hostSpot, host.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
+                    new SyncRandomEmoteToHost(joiner.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Flip_Flip", clientSpot, host.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
                 }
             }
         }
@@ -343,12 +484,27 @@ namespace TitanFall2Emotes
                     new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "RPS_Start", Random.Range(0, RPS_Start_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
                 }
             }
-            if (newAnimation == "Conga") //audio not syncing cause they are different anims
+            if (newAnimation == "Flippin' Awesome")
+            {
+                if (NetworkServer.active)
+                {
+                    new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Flip_Wait", Random.Range(0, Flip_Wait_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
+                }
+            }
+            if (newAnimation == "Conga")
             {
                 if (NetworkServer.active)
                 {
                     mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation = "Medic_Conga";
                     new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Conga_Start", Random.Range(0, Conga_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
+                }
+            }
+            if (newAnimation == "Kazotsky Kick")
+            {
+                if (NetworkServer.active)
+                {
+                    mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation = "Medic_Kazotsky";
+                    new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Kazotsky_Start", Random.Range(0, KazotskyKick_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
                 }
             }
             if (newAnimation.EndsWith("_Conga") && !mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation.EndsWith("_Conga"))
@@ -357,6 +513,14 @@ namespace TitanFall2Emotes
                 {
                     mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation = "Medic_Conga";
                     new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Conga_Start", Random.Range(0, Conga_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
+                }
+            }
+            if (newAnimation.StartsWith("Kazotsky_") && !mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation.EndsWith("_Kazotsky"))
+            {
+                if (NetworkServer.active)
+                {
+                    mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation = "Medic_Kazotsky";
+                    new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Kazotsky_Start", Random.Range(0, KazotskyKick_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
                 }
             }
 
@@ -435,6 +599,27 @@ namespace TitanFall2Emotes
             CustomEmotesAPI.AddCustomAnimation(primary.ToArray(), true, wwise, stopwwise.ToArray(), visible: false, syncAudio: sync);
             return emote;
         }
+        internal string AddHiddenAnimation(string[] AnimClip, string[] wwise, string stopWwise, bool sync, string[] AnimClip2)
+        {
+            List<string> stopwwise = new List<string>();
+            foreach (var item in wwise)
+            {
+                stopwwise.Add($"Stop_{stopWwise}");
+            }
+            List<AnimationClip> primary = new List<AnimationClip>();
+            foreach (var item in AnimClip)
+            {
+                primary.Add(Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{item}.anim"));
+            }
+            List<AnimationClip> secondary = new List<AnimationClip>();
+            foreach (var item in AnimClip2)
+            {
+                secondary.Add(Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{item}.anim"));
+            }
+            string emote = AnimClip[0].Split('/')[AnimClip[0].Split('/').Length - 1]; ;
+            CustomEmotesAPI.AddCustomAnimation(primary.ToArray(), false, wwise, stopwwise.ToArray(), visible: false, syncAudio: sync, secondaryAnimation: secondary.ToArray());
+            return emote;
+        }
         void DEBUG()
         {
             CustomEmotesAPI.AddNonAnimatingEmote("SpawnEnemies");
@@ -461,6 +646,8 @@ namespace TitanFall2Emotes
             CustomEmotesAPI.BlackListEmote("EnemyBreak");
             CustomEmotesAPI.AddNonAnimatingEmote("SpawnBody");
             CustomEmotesAPI.BlackListEmote("SpawnBody");
+            CustomEmotesAPI.AddNonAnimatingEmote("EnemyKazotsky");
+            CustomEmotesAPI.BlackListEmote("EnemyKazotsky");
         }
         void DEBUGHANDLE(BoneMapper mapper, string newAnimation)
         {
@@ -479,6 +666,16 @@ namespace TitanFall2Emotes
                     if (item != CustomEmotesAPI.localMapper)
                     {
                         CustomEmotesAPI.PlayAnimation("HondaStep", item);
+                    }
+                }
+            }
+            if (newAnimation == "EnemyKazotsky")
+            {
+                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
+                {
+                    if (item != CustomEmotesAPI.localMapper)
+                    {
+                        CustomEmotesAPI.PlayAnimation("Kazotsky Kick", item);
                     }
                 }
             }
@@ -574,37 +771,43 @@ namespace TitanFall2Emotes
             }
             if (newAnimation == "SpawnBody")
             {
-                switch (Random.Range(0, 10))
+                switch (Random.Range(0, 12))
                 {
                     case 0:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Captain");
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Acrid");
                         break;
                     case 1:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Commando");
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Artificer");
                         break;
                     case 2:
                         RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Bandit2");
                         break;
                     case 3:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Artificer");
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Captain");
                         break;
                     case 4:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Mercenary");
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Commando");
                         break;
                     case 5:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body robpaladinbody");
-                        break;
-                    case 6:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body railgunner");
-                        break;
-                    case 7:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body MULT");
-                        break;
-                    case 8:
                         RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Engi");
                         break;
+                    case 6:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Huntress");
+                        break;
+                    case 7:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Loader");
+                        break;
+                    case 8:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body MULT");
+                        break;
                     case 9:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body huntress");
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Mercenary");
+                        break;
+                    case 10:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body REX");
+                        break;
+                    case 11:
+                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Railgunner");
                         break;
 
                     default:

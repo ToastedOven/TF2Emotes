@@ -59,13 +59,13 @@ namespace TitanFall2Emotes
             switch (spot % 3)
             {
                 case 0:
-                    joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/Rock_{Team}.prefab")));
+                    joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/{Team}_Rock_Win.prefab")));
                     break;
                 case 1:
-                    joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/Paper_{Team}.prefab")));
+                    joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/{Team}_Paper_Win.prefab")));
                     break;
                 case 2:
-                    joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/Scissors_{Team}.prefab")));
+                    joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/{Team}_Scissors_Win.prefab")));
                     break;
                 default:
                     break;
@@ -111,13 +111,13 @@ namespace TitanFall2Emotes
             switch (spot % 3)
             {
                 case 0:
-                    joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/Rock_{Team2}.prefab")));
+                    joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/{Team2}_Rock_Lose.prefab")));
                     break;
                 case 1:
-                    joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/Paper_{Team2}.prefab")));
+                    joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/{Team2}_Paper_Lose.prefab")));
                     break;
                 case 2:
-                    joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/Scissors_{Team2}.prefab")));
+                    joinerMapper.props.Add(GameObject.Instantiate(Assets.Load<GameObject>($"@BadAssEmotes_badassemotes:Assets/RPS/{Team2}_Scissors_Lose.prefab")));
                     break;
                 default:
                     break;

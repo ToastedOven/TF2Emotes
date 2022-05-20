@@ -56,9 +56,20 @@ namespace TitanFall2Emotes
                 case "RPS_Loss":
                     RockPaperScissors.RPSLose(joinerMapper, spot, hostJoinerMapper, joinerIndex, hostIndex);
                     break;
+                case "Flip_Wait":
+                    Flip.FlipWait(joinerMapper, spot);
+                    break;
+                case "Flip_Throw":
+                    Flip.Flip_Throw(joinerMapper, spot, hostJoinerMapper);
+                    break;
+                case "Flip_Flip":
+                    Flip.Flip_Flip(joinerMapper, spot, hostJoinerMapper);
+                    break;
                 case "Conga_Start":
-                    joinerMapper.PlayAnim(TF2Plugin.Conga_Emotes[spot], 0);
-                    joinerMapper.SetAutoWalk(1, true);
+                    Conga.StartConga(joinerMapper, spot);
+                    break;
+                case "Kazotsky_Start":
+                    Kazotsky.StartKazotsky(joinerMapper, spot);
                     break;
                 default:
                     break;
