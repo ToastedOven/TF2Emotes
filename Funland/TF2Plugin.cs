@@ -47,10 +47,34 @@ namespace TitanFall2Emotes
             Flip();
             KazotskyKick();
             Register();
-            DEBUG();
+            //DEBUG();
             CustomEmotesAPI.animChanged += CustomEmotesAPI_animChanged;
             CustomEmotesAPI.emoteSpotJoined_Body += CustomEmotesAPI_emoteSpotJoined_Body;
+            //On.EntityStates.BaseState.OnEnter += (orig, self) =>
+            //{
+            //    orig(self);
+            //    DebugClass.Log($"----------onenter:   {self.GetTeam()}     {self.outer.gameObject}");
+            //};
+            //On.EntityStates.BaseState.GetAimRay += (orig, self) =>
+            //{
+            //    DebugClass.Log($"----------ray:   {self.GetTeam()}     {self.outer.gameObject}");
+            //    return orig(self);
+            //};
+            //On.RoR2.CharacterAI.BaseAI.EvaluateSingleSkillDriver += BaseAI_EvaluateSingleSkillDriver;
         }
+        //bone mapper? if not then: model locator? model transform? bone mapper?
+        RoR2.CharacterAI.BaseAI.Target currentTarget = null;
+        //private RoR2.CharacterAI.BaseAI.SkillDriverEvaluation? BaseAI_EvaluateSingleSkillDriver(On.RoR2.CharacterAI.BaseAI.orig_EvaluateSingleSkillDriver orig, RoR2.CharacterAI.BaseAI self, ref RoR2.CharacterAI.BaseAI.SkillDriverEvaluation currentSkillDriverEvaluation, RoR2.CharacterAI.AISkillDriver aiSkillDriver, float myHealthFraction)
+        //{
+        //    var thing = orig(self, ref currentSkillDriverEvaluation, aiSkillDriver, myHealthFraction);
+        //    if (thing.HasValue && thing.Value.aimTarget != currentTarget)
+        //    {
+        //        currentTarget = thing.Value.aimTarget;
+        //        DebugClass.Log($"----------set target:   {self.body.teamComponent.teamIndex}     {self.body.gameObject}     {currentTarget}   {currentTarget.characterBody.gameObject}   {currentTarget.characterBody.teamComponent.teamIndex}");
+        //    }
+        //    return thing;
+        //}
+
         void Register()
         {
             NetworkingAPI.RegisterMessageType<SyncRandomEmoteToClient>();
@@ -66,6 +90,8 @@ namespace TitanFall2Emotes
         public void Flip()
         {
             CustomEmotesAPI.AddNonAnimatingEmote("Flippin' Awesome");
+            CustomEmotesAPI.BlackListEmote("Flippin' Awesome");
+
 
             string emote = AddHiddenAnimation(new string[] { "Demo/Flip/Demo_Flip_Start" }, new string[] { "Demo/Flip/Demo_Flip_Wait" }, new string[] { "Demo_Flip_Waiting" }, "Flip", new JoinSpot[] { new JoinSpot("FlipJoinSpot", new Vector3(0, 0, 1.5f)) });
             Flip_Wait_Emotes.Add(emote);
@@ -150,6 +176,7 @@ namespace TitanFall2Emotes
         public void RPS()
         {
             CustomEmotesAPI.AddNonAnimatingEmote("Rock Paper Scissors");
+            CustomEmotesAPI.BlackListEmote("Rock Paper Scissors");
             CustomEmotesAPI.AddNonAnimatingEmote("Rock", false);
             CustomEmotesAPI.AddNonAnimatingEmote("Paper", false);
             CustomEmotesAPI.AddNonAnimatingEmote("Scissors", false);
@@ -326,6 +353,7 @@ namespace TitanFall2Emotes
         public void KazotskyKick()
         {
             CustomEmotesAPI.AddNonAnimatingEmote("Kazotsky Kick");
+            CustomEmotesAPI.BlackListEmote("Kazotsky Kick");
             string emote;
             emote = AddHiddenAnimation(new string[] { "KazotskyKick/Kazotsky_Demo_Start" }, new string[] { "Kazotsky" }, "Kazotsky", true, new string[] { "KazotskyKick/Kazotsky_Demo_Loop" }); //names are wrong, should be Kazotsky_Sniper_Loop
             KazotskyKick_Emotes.Add(emote);
@@ -358,6 +386,8 @@ namespace TitanFall2Emotes
         public void Conga()
         {
             CustomEmotesAPI.AddNonAnimatingEmote("Conga");
+            CustomEmotesAPI.BlackListEmote("Conga");
+
             string emote;
             emote = AddHiddenAnimation(new string[] { "Conga/Demo_Conga" }, new string[] { "Conga" }, "Conga", true);
             Conga_Emotes.Add(emote);
@@ -536,15 +566,19 @@ namespace TitanFall2Emotes
         internal void AddAnimation(string AnimClip, string wwise, bool looping, bool dimAudio, bool sync)
         {
             CustomEmotesAPI.AddCustomAnimation(Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{AnimClip}.anim"), looping, $"Play_{wwise}", $"Stop_{wwise}", dimWhenClose: dimAudio, syncAnim: sync, syncAudio: sync);
+            string emote = AnimClip.Split('/')[AnimClip.Split('/').Length - 1];
         }
 
         internal void AddAnimation(string AnimClip, string wwise, string AnimClip2ElectricBoogaloo, bool dimAudio, bool sync)
         {
             CustomEmotesAPI.AddCustomAnimation(Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{AnimClip}.anim"), true, $"Play_{wwise}", $"Stop_{wwise}", secondaryAnimation: Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{AnimClip2ElectricBoogaloo}.anim"), dimWhenClose: dimAudio, syncAnim: sync, syncAudio: sync);
+            string emote = AnimClip.Split('/')[AnimClip.Split('/').Length - 1];
+            CustomEmotesAPI.BlackListEmote(emote);
         }
         internal void AddAnimation(string AnimClip, string wwise, string AnimClip2ElectricBoogaloo, bool dimAudio, bool sync, bool visibility)
         {
             CustomEmotesAPI.AddCustomAnimation(Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{AnimClip}.anim"), true, $"Play_{wwise}", $"Stop_{wwise}", secondaryAnimation: Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{AnimClip2ElectricBoogaloo}.anim"), dimWhenClose: dimAudio, syncAnim: sync, syncAudio: sync, visible: visibility);
+            string emote = AnimClip.Split('/')[AnimClip.Split('/').Length - 1];
         }
         internal string AddHiddenAnimation(string[] AnimClip, string[] AnimClip2ElectricBoogaloo, string[] wwise, string stopWwise, JoinSpot[] joinSpots)
         {
@@ -563,7 +597,7 @@ namespace TitanFall2Emotes
             {
                 secondary.Add(Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{item}.anim"));
             }
-            string emote = AnimClip[0].Split('/')[AnimClip[0].Split('/').Length - 1]; ;
+            string emote = AnimClip[0].Split('/')[AnimClip[0].Split('/').Length - 1]; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ;
             CustomEmotesAPI.AddCustomAnimation(primary.ToArray(), true, wwise, stopwwise.ToArray(), secondaryAnimation: secondary.ToArray(), joinSpots: joinSpots, visible: false);
             return emote;
         }
