@@ -25,7 +25,7 @@ namespace TitanFall2Emotes
         public const string PluginGUID = "com.weliveinasociety.teamfortress2emotes";
         public const string PluginAuthor = "Nunchuk";
         public const string PluginName = "TF2Emotes";
-        public const string PluginVersion = "1.0.0";
+        public const string PluginVersion = "1.0.2";
         internal static List<string> Conga_Emotes = new List<string>();
         internal static List<string> KazotskyKick_Emotes = new List<string>();
         internal static List<string> RPS_Start_Emotes = new List<string>();
@@ -38,7 +38,8 @@ namespace TitanFall2Emotes
         public void Awake()
         {
             Assets.PopulateAssets();
-            Assets.AddSoundBank("Init.bnk");
+            //Assets.AddSoundBank("Init.bnk");
+
             Assets.AddSoundBank("tf2.bnk");
             Assets.LoadSoundBanks();
             Rancho();
@@ -47,7 +48,7 @@ namespace TitanFall2Emotes
             Flip();
             KazotskyKick();
             Register();
-            //DEBUG();
+            DEBUG();
             CustomEmotesAPI.animChanged += CustomEmotesAPI_animChanged;
             CustomEmotesAPI.emoteSpotJoined_Body += CustomEmotesAPI_emoteSpotJoined_Body;
             //On.EntityStates.BaseState.OnEnter += (orig, self) =>
