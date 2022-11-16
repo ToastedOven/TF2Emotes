@@ -25,7 +25,7 @@ namespace TitanFall2Emotes
         public const string PluginGUID = "com.weliveinasociety.teamfortress2emotes";
         public const string PluginAuthor = "Nunchuk";
         public const string PluginName = "TF2Emotes";
-        public const string PluginVersion = "1.0.2";
+        public const string PluginVersion = "1.0.4";
         internal static List<string> Conga_Emotes = new List<string>();
         internal static List<string> KazotskyKick_Emotes = new List<string>();
         internal static List<string> RPS_Start_Emotes = new List<string>();
@@ -49,6 +49,7 @@ namespace TitanFall2Emotes
             KazotskyKick();
             Register();
             DEBUG();
+            CustomEmotesAPI.animJoined += CustomEmotesAPI_animJoined;
             CustomEmotesAPI.animChanged += CustomEmotesAPI_animChanged;
             CustomEmotesAPI.emoteSpotJoined_Body += CustomEmotesAPI_emoteSpotJoined_Body;
             //On.EntityStates.BaseState.OnEnter += (orig, self) =>
@@ -63,6 +64,20 @@ namespace TitanFall2Emotes
             //};
             //On.RoR2.CharacterAI.BaseAI.EvaluateSingleSkillDriver += BaseAI_EvaluateSingleSkillDriver;
         }
+
+        private void CustomEmotesAPI_animJoined(string joinedAnimation, BoneMapper joiner, BoneMapper host)
+        {
+            if (joinedAnimation.EndsWith("_Conga"))
+            {
+                int num = Random.Range(0, Conga_Emotes.Count);
+                new SyncRandomEmoteToHost(joiner.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Conga_Start", num, joiner.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
+            }
+            if (joinedAnimation.StartsWith("Kazotsky_"))
+            {
+                new SyncRandomEmoteToHost(joiner.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Kazotsky_Start", Random.Range(0, KazotskyKick_Emotes.Count), joiner.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
+            }
+        }
+
         //bone mapper? if not then: model locator? model transform? bone mapper?
         RoR2.CharacterAI.BaseAI.Target currentTarget = null;
         //private RoR2.CharacterAI.BaseAI.SkillDriverEvaluation? BaseAI_EvaluateSingleSkillDriver(On.RoR2.CharacterAI.BaseAI.orig_EvaluateSingleSkillDriver orig, RoR2.CharacterAI.BaseAI self, ref RoR2.CharacterAI.BaseAI.SkillDriverEvaluation currentSkillDriverEvaluation, RoR2.CharacterAI.AISkillDriver aiSkillDriver, float myHealthFraction)
@@ -538,23 +553,6 @@ namespace TitanFall2Emotes
                     new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Kazotsky_Start", Random.Range(0, KazotskyKick_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
                 }
             }
-            if (newAnimation.EndsWith("_Conga") && !mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation.EndsWith("_Conga"))
-            {
-                if (NetworkServer.active)
-                {
-                    mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation = "Medic_Conga";
-                    new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Conga_Start", Random.Range(0, Conga_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
-                }
-            }
-            if (newAnimation.StartsWith("Kazotsky_") && !mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation.EndsWith("_Kazotsky"))
-            {
-                if (NetworkServer.active)
-                {
-                    mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation = "Medic_Kazotsky";
-                    new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Kazotsky_Start", Random.Range(0, KazotskyKick_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
-                }
-            }
-
             mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation = newAnimation;
             DEBUGHANDLE(mapper, newAnimation);
         }
