@@ -25,7 +25,7 @@ namespace TitanFall2Emotes
         public const string PluginGUID = "com.weliveinasociety.teamfortress2emotes";
         public const string PluginAuthor = "Nunchuk";
         public const string PluginName = "TF2Emotes";
-        public const string PluginVersion = "1.0.4";
+        public const string PluginVersion = "1.1.1";
         internal static List<string> Conga_Emotes = new List<string>();
         internal static List<string> KazotskyKick_Emotes = new List<string>();
         internal static List<string> RPS_Start_Emotes = new List<string>();
@@ -34,6 +34,7 @@ namespace TitanFall2Emotes
         internal static List<string> Flip_Wait_Emotes = new List<string>();
         internal static List<string> Flip_Flip_Emotes = new List<string>();
         internal static List<string> Flip_Throw_Emotes = new List<string>();
+        internal static List<string> Laugh_Emotes = new List<string>();
         internal static Shader defaultShader = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Commando/CommandoBody.prefab").WaitForCompletion().GetComponentInChildren<SkinnedMeshRenderer>().material.shader;
         public void Awake()
         {
@@ -47,22 +48,12 @@ namespace TitanFall2Emotes
             Conga();
             Flip();
             KazotskyKick();
+            Laugh();
             Register();
-            DEBUG();
+            //DEBUG();
             CustomEmotesAPI.animJoined += CustomEmotesAPI_animJoined;
             CustomEmotesAPI.animChanged += CustomEmotesAPI_animChanged;
             CustomEmotesAPI.emoteSpotJoined_Body += CustomEmotesAPI_emoteSpotJoined_Body;
-            //On.EntityStates.BaseState.OnEnter += (orig, self) =>
-            //{
-            //    orig(self);
-            //    DebugClass.Log($"----------onenter:   {self.GetTeam()}     {self.outer.gameObject}");
-            //};
-            //On.EntityStates.BaseState.GetAimRay += (orig, self) =>
-            //{
-            //    DebugClass.Log($"----------ray:   {self.GetTeam()}     {self.outer.gameObject}");
-            //    return orig(self);
-            //};
-            //On.RoR2.CharacterAI.BaseAI.EvaluateSingleSkillDriver += BaseAI_EvaluateSingleSkillDriver;
         }
 
         private void CustomEmotesAPI_animJoined(string joinedAnimation, BoneMapper joiner, BoneMapper host)
@@ -102,6 +93,38 @@ namespace TitanFall2Emotes
             AddAnimation("Engi/Rancho/engiRanchoBurp", "", "Engi/Rancho/engiRanchoPassive", false, false, false);
             AddAnimation("Engi/Rancho/engiRanchoBigDrink", "", "Engi/Rancho/engiRanchoPassive", false, false, false);
             AddAnimation("Engi/Rancho/engiRanchoQuickDrink", "", "Engi/Rancho/engiRanchoPassive", false, false, false);
+        }
+        public void Laugh()
+        {
+            CustomEmotesAPI.AddNonAnimatingEmote("Schadenfreude");
+            CustomEmotesAPI.BlackListEmote("Schadenfreude");
+            string emote = AddHiddenAnimation(new string[] { "Engi/Laugh/Engi_Laugh" }, new string[] { "Engi_Laugh" }, "Laugh");
+            Laugh_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Scout/Laugh/Scout_Laugh" }, new string[] { "Scout_Laugh" }, "Laugh");
+            Laugh_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Demo/Laugh/Demo_Laugh" }, new string[] { "Demo_Laugh" }, "Laugh");
+            Laugh_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Soldier/Laugh/Soldier_Laugh" }, new string[] { "Soldier_Laugh" }, "Laugh");
+            Laugh_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Pyro/Laugh/Pyro_Laugh" }, new string[] { "Pyro_Laugh" }, "Laugh");
+            Laugh_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Heavy/Laugh/Heavy_Laugh" }, new string[] { "Heavy_Laugh" }, "Laugh");
+            Laugh_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Medic/Laugh/Medic_Laugh" }, new string[] { "Medic_Laugh" }, "Laugh");
+            Laugh_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Sniper/Laugh/Sniper_Laugh" }, new string[] { "Sniper_Laugh" }, "Laugh");
+            Laugh_Emotes.Add(emote);
+
+            emote = AddHiddenAnimation(new string[] { "Spy/Laugh/Spy_Laugh" }, new string[] { "Spy_Laugh" }, "Laugh");
+            Laugh_Emotes.Add(emote);
+
         }
         public void Flip()
         {
@@ -553,8 +576,15 @@ namespace TitanFall2Emotes
                     new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Kazotsky_Start", Random.Range(0, KazotskyKick_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
                 }
             }
+            if (newAnimation == "Schadenfreude")
+            {
+                if (NetworkServer.active)
+                {
+                    mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation = "Medic_Laugh";
+                    new SyncRandomEmoteToHost(mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId, "Laugh_Start", Random.Range(0, Laugh_Emotes.Count), mapper.transform.parent.GetComponent<CharacterModel>().body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
+                }
+            }
             mapper.gameObject.GetComponent<TF2EmoteTracker>().currentAnimation = newAnimation;
-            DEBUGHANDLE(mapper, newAnimation);
         }
 
         void Update()
@@ -653,201 +683,7 @@ namespace TitanFall2Emotes
             CustomEmotesAPI.AddCustomAnimation(primary.ToArray(), false, wwise, stopwwise.ToArray(), visible: false, syncAudio: sync, secondaryAnimation: secondary.ToArray());
             return emote;
         }
-        void DEBUG()
-        {
-            CustomEmotesAPI.AddNonAnimatingEmote("SpawnEnemies");
-            CustomEmotesAPI.BlackListEmote("SpawnEnemies");
-            CustomEmotesAPI.AddNonAnimatingEmote("EnemyHonda");
-            CustomEmotesAPI.BlackListEmote("EnemyHonda");
-            CustomEmotesAPI.AddNonAnimatingEmote("EnemyCum");
-            CustomEmotesAPI.BlackListEmote("EnemyCum");
-            CustomEmotesAPI.AddNonAnimatingEmote("EnemyDodge");
-            CustomEmotesAPI.BlackListEmote("EnemyDodge");
-            CustomEmotesAPI.AddNonAnimatingEmote("EnemyStand");
-            CustomEmotesAPI.BlackListEmote("EnemyStand");
-            CustomEmotesAPI.AddNonAnimatingEmote("EnemyJoin");
-            CustomEmotesAPI.BlackListEmote("EnemyJoin");
-            CustomEmotesAPI.AddNonAnimatingEmote("EnemyRPS");
-            CustomEmotesAPI.BlackListEmote("EnemyRPS");
-            CustomEmotesAPI.AddNonAnimatingEmote("EnemyConga");
-            CustomEmotesAPI.BlackListEmote("EnemyConga");
-            CustomEmotesAPI.AddNonAnimatingEmote("EnemyNone");
-            CustomEmotesAPI.BlackListEmote("EnemyNone");
-            CustomEmotesAPI.AddNonAnimatingEmote("EnemyGetDown");
-            CustomEmotesAPI.BlackListEmote("EnemyGetDown");
-            CustomEmotesAPI.AddNonAnimatingEmote("EnemyBreak");
-            CustomEmotesAPI.BlackListEmote("EnemyBreak");
-            CustomEmotesAPI.AddNonAnimatingEmote("SpawnBody");
-            CustomEmotesAPI.BlackListEmote("SpawnBody");
-            CustomEmotesAPI.AddNonAnimatingEmote("EnemyKazotsky");
-            CustomEmotesAPI.BlackListEmote("EnemyKazotsky");
-        }
-        void DEBUGHANDLE(BoneMapper mapper, string newAnimation)
-        {
-            if (mapper.worldProp)
-            {
-                return;
-            }
-            if (newAnimation == "SpawnEnemies")
-            {
-                StartCoroutine(SpawnEnemies());
-            }
-            if (newAnimation == "EnemyHonda")
-            {
-                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
-                {
-                    if (item != CustomEmotesAPI.localMapper)
-                    {
-                        CustomEmotesAPI.PlayAnimation("HondaStep", item);
-                    }
-                }
-            }
-            if (newAnimation == "EnemyKazotsky")
-            {
-                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
-                {
-                    if (item != CustomEmotesAPI.localMapper)
-                    {
-                        CustomEmotesAPI.PlayAnimation("Kazotsky Kick", item);
-                    }
-                }
-            }
-            if (newAnimation == "EnemyNone")
-            {
-                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
-                {
-                    if (item != CustomEmotesAPI.localMapper)
-                    {
-                        CustomEmotesAPI.PlayAnimation("none", item);
-                    }
-                }
-            }
-            if (newAnimation == "EnemyConga")
-            {
-                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
-                {
-                    if (item != CustomEmotesAPI.localMapper)
-                    {
-                        CustomEmotesAPI.PlayAnimation("Conga", item);
-                    }
-                }
-            }
-            if (newAnimation == "EnemyRPS")
-            {
-                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
-                {
-                    if (item != CustomEmotesAPI.localMapper)
-                    {
-                        CustomEmotesAPI.PlayAnimation("Rock Paper Scissors", item);
-                    }
-                }
-            }
-            if (newAnimation == "EnemyJoin")
-            {
-                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
-                {
-                    if (item != CustomEmotesAPI.localMapper && item.currentEmoteSpot)
-                    {
-                        item.JoinEmoteSpot();
-                    }
-                }
-            }
-            if (newAnimation == "EnemyStand")
-            {
-                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
-                {
-                    if (item != CustomEmotesAPI.localMapper)
-                    {
-                        CustomEmotesAPI.PlayAnimation("StoodHere", item);
-                    }
-                }
-            }
-            if (newAnimation == "EnemyBreak")
-            {
-                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
-                {
-                    if (item != CustomEmotesAPI.localMapper)
-                    {
-                        CustomEmotesAPI.PlayAnimation("Breakneck", item);
-                    }
-                }
-            }
-            if (newAnimation == "EnemyGetDown")
-            {
-                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
-                {
-                    if (item != CustomEmotesAPI.localMapper)
-                    {
-                        CustomEmotesAPI.PlayAnimation("GetDown", item);
-                    }
-                }
-            }
-            if (newAnimation == "EnemyDodge")
-            {
-                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
-                {
-                    if (item != CustomEmotesAPI.localMapper)
-                    {
-                        CustomEmotesAPI.PlayAnimation("DuckThisOneIdle", item);
-                    }
-                }
-            }
-            if (newAnimation == "EnemyCum")
-            {
-                foreach (var item in CustomEmotesAPI.GetAllBoneMappers())
-                {
-                    if (item != CustomEmotesAPI.localMapper)
-                    {
-                        CustomEmotesAPI.PlayAnimation("Cum Throne", item);
-                    }
-                }
-            }
-            if (newAnimation == "SpawnBody")
-            {
-                switch (Random.Range(0, 12))
-                {
-                    case 0:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Acrid");
-                        break;
-                    case 1:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Artificer");
-                        break;
-                    case 2:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Bandit2");
-                        break;
-                    case 3:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Captain");
-                        break;
-                    case 4:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Commando");
-                        break;
-                    case 5:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Engi");
-                        break;
-                    case 6:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Huntress");
-                        break;
-                    case 7:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Loader");
-                        break;
-                    case 8:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body MULT");
-                        break;
-                    case 9:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Mercenary");
-                        break;
-                    case 10:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body REX");
-                        break;
-                    case 11:
-                        RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body Railgunner");
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-        }
+        
         IEnumerator SpawnEnemies()
         {
             RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body BeetleQueen");

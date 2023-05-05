@@ -71,6 +71,9 @@ namespace TitanFall2Emotes
                 case "Kazotsky_Start":
                     Kazotsky.StartKazotsky(joinerMapper, spot);
                     break;
+                case "Laugh_Start":
+                    Laugh.PlayLaugh(joinerMapper, spot);
+                    break;
                 default:
                     break;
             }

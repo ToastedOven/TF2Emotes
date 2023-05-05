@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2458445582
+CRC: 209995982
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7b4831d09544a3c64f173d21304b7efd
+    Hash: b8d54dc4b82c2848bb3bcc0571ef1061
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2fa25b6d5f2979704d5e56ec85a53b0e
@@ -39,6 +39,7 @@ Assets:
 - Assets/Soldier/Flip/Soldier_Flip_Throw.anim
 - Assets/KazotskyKick/Kazotsky_Soldier_Start.anim
 - Assets/Pyro/RPS/PyroRPS_PWin.anim
+- Assets/Sniper/Laugh/Sniper_Laugh.anim
 - Assets/Scout/RPS/ScoutRPS_RWin.anim
 - Assets/Engi/RPS/EngiRPSStart.anim
 - Assets/Demo/RPS/DemoRPS_Loop.anim
@@ -90,12 +91,14 @@ Assets:
 - Assets/Scout/RPS/ScoutRPS_PWin.anim
 - Assets/Scout/Flip/Scout_Flip_Start.anim
 - Assets/Medic/RPS/MedicRPS_Loop.anim
+- Assets/Spy/Laugh/Spy_Laugh.anim
 - Assets/Scout/RPS/ScoutRPS_RLose.anim
 - Assets/Engi/RPS/EngiRPS_PLose.anim
 - Assets/Conga/Pyro_Conga.anim
 - Assets/Heavy/Flip/Heavy_Flip_Wait.anim
 - Assets/Engi/RPS/EngiRPS_PWin.anim
 - Assets/RPS/Blu_Paper_Win.prefab
+- Assets/Soldier/Laugh/Soldier_Laugh.anim
 - Assets/Pyro/RPS/PyroRPS_RLose.anim
 - Assets/Soldier/RPS/SoldierRPS_RLose.anim
 - Assets/Engi/RPS/EngiRPS_SLose.anim
@@ -123,6 +126,7 @@ Assets:
 - Assets/KazotskyKick/Kazotsky_Soldier_Loop.anim
 - Assets/Engi/RPS/EngiRPSLoop.anim
 - Assets/Demo/RPS/DemoRPS_RLose.anim
+- Assets/Medic/Laugh/Medic_Laugh.anim
 - Assets/Demo/RPS/DemoRPS_PLose.anim
 - Assets/Sniper/Flip/Sniper_Flip_Throw.anim
 - Assets/Medic/RPS/MedicRPS_SLose.anim
@@ -144,10 +148,12 @@ Assets:
 - Assets/KazotskyKick/Kazotsky_Scout_Loop.anim
 - Assets/Heavy/RPS/HeavyRPS_RWin.anim
 - Assets/Medic/RPS/MedicRPS_PLose.anim
+- Assets/Engi/Laugh/Engi_Laugh.anim
 - Assets/Engi/Flip/Engi_Flip_Throw.anim
 - Assets/RPS/Red_Paper_Win.prefab
 - Assets/Conga/Sniper_Conga.anim
 - Assets/KazotskyKick/Kazotsky_Sniper_Loop.anim
+- Assets/Scout/Laugh/Scout_Laugh.anim
 - Assets/Sniper/RPS/SniperRPS_RWin.anim
 - Assets/KazotskyKick/Kazotsky_Demo_Start.anim
 - Assets/Pyro/RPS/PyroRPS_SWin.anim
@@ -155,6 +161,7 @@ Assets:
 - Assets/Pyro/RPS/PyroRPS_SLose.anim
 - Assets/Medic/Flip/Medic_Flip_Start.anim
 - Assets/Engi/Flip/Engi_Flip_Start.anim
+- Assets/Pyro/Laugh/Pyro_Laugh.anim
 - Assets/Scout/RPS/ScoutRPS_PLose.anim
 - Assets/Pyro/Flip/Pyro_Flip_Wait.anim
 - Assets/Sniper/RPS/SniperRPS_PLose.anim
@@ -162,6 +169,7 @@ Assets:
 - Assets/Pyro/RPS/PyroRPS_RWin.anim
 - Assets/Soldier/RPS/SoldierRPS_PLose.anim
 - Assets/Soldier/Flip/Soldier_Flip_Flip.anim
+- Assets/Demo/Laugh/Demo_Laugh.anim
 - Assets/Soldier/RPS/SoldierRPS_SWin.anim
 - Assets/Demo/RPS/DemoRPS_SLose.anim
 - Assets/Heavy/RPS/HeavyRPS_SWin.anim
@@ -178,6 +186,7 @@ Assets:
 - Assets/KazotskyKick/Kazotsky_Medic_Loop.anim
 - Assets/RPS/Blu_Scissors_Win.prefab
 - Assets/KazotskyKick/Kazotsky_Scout_Start.anim
+- Assets/Heavy/Laugh/Heavy_Laugh.anim
 - Assets/Spy/RPS/SpyRPS_SWin.anim
 - Assets/Medic/RPS/MedicRPS_SWin.anim
 - Assets/Soldier/RPS/SoldierRPS_Loop.anim
