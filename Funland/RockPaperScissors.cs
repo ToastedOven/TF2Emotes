@@ -51,6 +51,7 @@ namespace TitanFall2Emotes
             if (joinerIndex != hostIndex)
             {
                 Team = "Blu";
+                TF2Plugin.Instance.KillAfterSecondsNotIEnumerator(hostJoinerMapper, 6.5f);
             }
             //0 rock
             //1 paper
@@ -103,6 +104,7 @@ namespace TitanFall2Emotes
             if (joinerIndex != hostIndex)
             {
                 Team2 = "Blu";
+                TF2Plugin.Instance.KillAfterSecondsNotIEnumerator(joinerMapper, 6.5f);
             }
             //0 rock
             //1 paper

@@ -22,10 +22,11 @@ namespace TitanFall2Emotes
     [R2APISubmoduleDependency("SoundAPI", "PrefabAPI", "CommandHelper", "ResourcesAPI")]
     public class TF2Plugin : BaseUnityPlugin
     {
+        public static TF2Plugin Instance;
         public const string PluginGUID = "com.weliveinasociety.teamfortress2emotes";
         public const string PluginAuthor = "Nunchuk";
         public const string PluginName = "TF2Emotes";
-        public const string PluginVersion = "1.1.1";
+        public const string PluginVersion = "1.2.2";
         internal static List<string> Conga_Emotes = new List<string>();
         internal static List<string> KazotskyKick_Emotes = new List<string>();
         internal static List<string> RPS_Start_Emotes = new List<string>();
@@ -38,9 +39,11 @@ namespace TitanFall2Emotes
         internal static Shader defaultShader = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Commando/CommandoBody.prefab").WaitForCompletion().GetComponentInChildren<SkinnedMeshRenderer>().material.shader;
         public void Awake()
         {
+            Instance = this;
             Assets.PopulateAssets();
             //Assets.AddSoundBank("Init.bnk");
-
+            Settings.SetupConfig();
+            Settings.SetupROO();
             Assets.AddSoundBank("tf2.bnk");
             Assets.LoadSoundBanks();
             Rancho();
@@ -50,10 +53,20 @@ namespace TitanFall2Emotes
             KazotskyKick();
             Laugh();
             Register();
+            FriendlyComponent.FriendlySetup();
             //DEBUG();
             CustomEmotesAPI.animJoined += CustomEmotesAPI_animJoined;
             CustomEmotesAPI.animChanged += CustomEmotesAPI_animChanged;
             CustomEmotesAPI.emoteSpotJoined_Body += CustomEmotesAPI_emoteSpotJoined_Body;
+            CustomEmotesAPI.boneMapperEnteredJoinSpot += CustomEmotesAPI_boneMapperEnteredJoinSpot;
+        }
+
+        private void CustomEmotesAPI_boneMapperEnteredJoinSpot(BoneMapper mover, BoneMapper joinSpotOwner)
+        {
+            if (Settings.EnemiesEmoteWithYou.Value && mover.mapperBody.teamComponent.teamIndex != TeamIndex.Player && mover.mapperBody.GetComponent<HealthComponent>().timeSinceLastHit > 5)
+            {
+                mover.JoinEmoteSpot();
+            }
         }
 
         private void CustomEmotesAPI_animJoined(string joinedAnimation, BoneMapper joiner, BoneMapper host)
@@ -591,6 +604,24 @@ namespace TitanFall2Emotes
         {
 
         }
+        internal void PlayAfterSecondsNotIEnumerator(BoneMapper mapper, string animName, float seconds)
+        {
+            StartCoroutine(PlayAfterSeconds(mapper, animName, seconds));
+        }
+        internal IEnumerator PlayAfterSeconds(BoneMapper mapper, string animName, float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            CustomEmotesAPI.PlayAnimation(animName, mapper);
+        }
+        internal void KillAfterSecondsNotIEnumerator(BoneMapper mapper, float seconds)
+        {
+            StartCoroutine(KillAfterSeconds(mapper, seconds));
+        }
+        internal IEnumerator KillAfterSeconds(BoneMapper mapper, float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            mapper.GetComponentInParent<CharacterModel>().body.healthComponent.Suicide();
+        }
 
         internal void AddAnimation(string AnimClip, string wwise, bool looping, bool dimAudio, bool sync)
         {
@@ -683,7 +714,7 @@ namespace TitanFall2Emotes
             CustomEmotesAPI.AddCustomAnimation(primary.ToArray(), false, wwise, stopwwise.ToArray(), visible: false, syncAudio: sync, secondaryAnimation: secondary.ToArray());
             return emote;
         }
-        
+
         IEnumerator SpawnEnemies()
         {
             RoR2.Console.instance.SubmitCmd(NetworkUser.readOnlyLocalPlayersList[0], $"spawn_body BeetleQueen");
