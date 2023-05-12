@@ -167,7 +167,7 @@ namespace TitanFall2Emotes
 
             foreach (var assetName in assetBundle.GetAllAssetNames())
             {
-                string path = assetName.ToLower();
+                string path = assetName.ToLowerInvariant();
                 if (path.StartsWith("assets/"))
                     path = path.Remove(0, "assets/".Length);
                 AssetIndices[path] = index;
@@ -198,11 +198,11 @@ namespace TitanFall2Emotes
             {
                 string[] path = assetName.Split(':');
 
-                assetName = path[1].ToLower();
+                assetName = path[1].ToLowerInvariant();
             }
-            if (assetName.ToLower().StartsWith("assets/"))
+            if (assetName.ToLowerInvariant().StartsWith("assets/"))
                 assetName = assetName.Remove(0, "assets/".Length);
-            int index = AssetIndices[assetName.ToLower()];
+            int index = AssetIndices[assetName.ToLowerInvariant()];
 
             T asset = AssetBundles[index].LoadAsset<T>($"assets/{assetName}");
 

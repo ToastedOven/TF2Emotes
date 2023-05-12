@@ -53,21 +53,25 @@ namespace TitanFall2Emotes
             KazotskyKick();
             Laugh();
             Register();
-            FriendlyComponent.FriendlySetup();
+
+            ///////////////////////////////////////////////////////setup all tf2 emotes as vulnerable
+
+
+
             //DEBUG();
             CustomEmotesAPI.animJoined += CustomEmotesAPI_animJoined;
             CustomEmotesAPI.animChanged += CustomEmotesAPI_animChanged;
             CustomEmotesAPI.emoteSpotJoined_Body += CustomEmotesAPI_emoteSpotJoined_Body;
-            CustomEmotesAPI.boneMapperEnteredJoinSpot += CustomEmotesAPI_boneMapperEnteredJoinSpot;
+            //CustomEmotesAPI.boneMapperEnteredJoinSpot += CustomEmotesAPI_boneMapperEnteredJoinSpot;
         }
 
-        private void CustomEmotesAPI_boneMapperEnteredJoinSpot(BoneMapper mover, BoneMapper joinSpotOwner)
-        {
-            if (Settings.EnemiesEmoteWithYou.Value && mover.mapperBody.teamComponent.teamIndex != TeamIndex.Player && mover.mapperBody.GetComponent<HealthComponent>().timeSinceLastHit > 5)
-            {
-                mover.JoinEmoteSpot();
-            }
-        }
+        //private void CustomEmotesAPI_boneMapperEnteredJoinSpot(BoneMapper mover, BoneMapper joinSpotOwner)
+        //{
+        //    if (Settings.EnemiesEmoteWithYou.Value && mover.mapperBody.teamComponent.teamIndex != TeamIndex.Player && mover.mapperBody.GetComponent<HealthComponent>().timeSinceLastHit > 5)
+        //    {
+        //        mover.JoinEmoteSpot();
+        //    }
+        //}
 
         private void CustomEmotesAPI_animJoined(string joinedAnimation, BoneMapper joiner, BoneMapper host)
         {
@@ -83,7 +87,7 @@ namespace TitanFall2Emotes
         }
 
         //bone mapper? if not then: model locator? model transform? bone mapper?
-        RoR2.CharacterAI.BaseAI.Target currentTarget = null;
+        //RoR2.CharacterAI.BaseAI.Target currentTarget = null;
         //private RoR2.CharacterAI.BaseAI.SkillDriverEvaluation? BaseAI_EvaluateSingleSkillDriver(On.RoR2.CharacterAI.BaseAI.orig_EvaluateSingleSkillDriver orig, RoR2.CharacterAI.BaseAI self, ref RoR2.CharacterAI.BaseAI.SkillDriverEvaluation currentSkillDriverEvaluation, RoR2.CharacterAI.AISkillDriver aiSkillDriver, float myHealthFraction)
         //{
         //    var thing = orig(self, ref currentSkillDriverEvaluation, aiSkillDriver, myHealthFraction);
@@ -627,6 +631,8 @@ namespace TitanFall2Emotes
         {
             CustomEmotesAPI.AddCustomAnimation(Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{AnimClip}.anim"), looping, $"Play_{wwise}", $"Stop_{wwise}", dimWhenClose: dimAudio, syncAnim: sync, syncAudio: sync);
             string emote = AnimClip.Split('/')[AnimClip.Split('/').Length - 1];
+            BoneMapper.animClips[emote].vulnerableEmote = true;
+
         }
 
         internal void AddAnimation(string AnimClip, string wwise, string AnimClip2ElectricBoogaloo, bool dimAudio, bool sync)
@@ -634,11 +640,14 @@ namespace TitanFall2Emotes
             CustomEmotesAPI.AddCustomAnimation(Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{AnimClip}.anim"), true, $"Play_{wwise}", $"Stop_{wwise}", secondaryAnimation: Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{AnimClip2ElectricBoogaloo}.anim"), dimWhenClose: dimAudio, syncAnim: sync, syncAudio: sync);
             string emote = AnimClip.Split('/')[AnimClip.Split('/').Length - 1];
             CustomEmotesAPI.BlackListEmote(emote);
+            BoneMapper.animClips[emote].vulnerableEmote = true;
         }
         internal void AddAnimation(string AnimClip, string wwise, string AnimClip2ElectricBoogaloo, bool dimAudio, bool sync, bool visibility)
         {
             CustomEmotesAPI.AddCustomAnimation(Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{AnimClip}.anim"), true, $"Play_{wwise}", $"Stop_{wwise}", secondaryAnimation: Assets.Load<AnimationClip>($"@ExampleEmotePlugin_badassemotes:assets/{AnimClip2ElectricBoogaloo}.anim"), dimWhenClose: dimAudio, syncAnim: sync, syncAudio: sync, visible: visibility);
             string emote = AnimClip.Split('/')[AnimClip.Split('/').Length - 1];
+            BoneMapper.animClips[emote].vulnerableEmote = true;
+
         }
         internal string AddHiddenAnimation(string[] AnimClip, string[] AnimClip2ElectricBoogaloo, string[] wwise, string stopWwise, JoinSpot[] joinSpots)
         {
@@ -659,10 +668,12 @@ namespace TitanFall2Emotes
             }
             string emote = AnimClip[0].Split('/')[AnimClip[0].Split('/').Length - 1]; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ;
             CustomEmotesAPI.AddCustomAnimation(primary.ToArray(), true, wwise, stopwwise.ToArray(), secondaryAnimation: secondary.ToArray(), joinSpots: joinSpots, visible: false);
+            BoneMapper.animClips[emote].vulnerableEmote = true;
             return emote;
         }
         internal string AddHiddenAnimation(string[] AnimClip, string[] wwise, string stopWwise)
         {
+
             List<string> stopwwise = new List<string>();
             foreach (var item in wwise)
             {
@@ -675,6 +686,7 @@ namespace TitanFall2Emotes
             }
             string emote = AnimClip[0].Split('/')[AnimClip[0].Split('/').Length - 1]; ;
             CustomEmotesAPI.AddCustomAnimation(primary.ToArray(), false, wwise, stopwwise.ToArray(), visible: false);
+            BoneMapper.animClips[emote].vulnerableEmote = true;
             return emote;
         }
         internal string AddHiddenAnimation(string[] AnimClip, string[] wwise, string stopWwise, bool sync)
@@ -691,6 +703,7 @@ namespace TitanFall2Emotes
             }
             string emote = AnimClip[0].Split('/')[AnimClip[0].Split('/').Length - 1]; ;
             CustomEmotesAPI.AddCustomAnimation(primary.ToArray(), true, wwise, stopwwise.ToArray(), visible: false, syncAudio: sync);
+            BoneMapper.animClips[emote].vulnerableEmote = true;
             return emote;
         }
         internal string AddHiddenAnimation(string[] AnimClip, string[] wwise, string stopWwise, bool sync, string[] AnimClip2)
@@ -712,6 +725,7 @@ namespace TitanFall2Emotes
             }
             string emote = AnimClip[0].Split('/')[AnimClip[0].Split('/').Length - 1]; ;
             CustomEmotesAPI.AddCustomAnimation(primary.ToArray(), false, wwise, stopwwise.ToArray(), visible: false, syncAudio: sync, secondaryAnimation: secondary.ToArray());
+            BoneMapper.animClips[emote].vulnerableEmote = true;
             return emote;
         }
 

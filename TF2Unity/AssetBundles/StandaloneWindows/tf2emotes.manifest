@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 209995982
+CRC: 238394121
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b8d54dc4b82c2848bb3bcc0571ef1061
+    Hash: 7d88d4c0f637cab245bb49c3db8839ca
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 2fa25b6d5f2979704d5e56ec85a53b0e
+    Hash: 722e1b8ffc06d361e5d9604380a2bd05
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -32,6 +32,8 @@ ClassTypes:
 - Class: 198
   Script: {instanceID: 0}
 - Class: 199
+  Script: {instanceID: 0}
+- Class: 213
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
@@ -94,6 +96,7 @@ Assets:
 - Assets/Spy/Laugh/Spy_Laugh.anim
 - Assets/Scout/RPS/ScoutRPS_RLose.anim
 - Assets/Engi/RPS/EngiRPS_PLose.anim
+- Assets/icon.png
 - Assets/Conga/Pyro_Conga.anim
 - Assets/Heavy/Flip/Heavy_Flip_Wait.anim
 - Assets/Engi/RPS/EngiRPS_PWin.anim
